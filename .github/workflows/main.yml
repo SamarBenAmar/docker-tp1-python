@@ -3,9 +3,11 @@ name: Demo Python Workflow
 on:
   push:
     branches: master
+  pull_request:
+    branches: master
 
 jobs:
-  bulid:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Login to Docker Hub
@@ -15,7 +17,7 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
           
       - name: Build Docker Image
-        run: docker build . -t samar2607/docker-tp1-python:1.0.1
+        run: docker build . --file Dockerfile --tag samar2607/docker-tp1-python:1.0.1
         
       - name: Push Docker Image to Docker Hub
         run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/docker-tp1-python:1.0.1
