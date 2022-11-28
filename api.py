@@ -20,5 +20,6 @@ try:
   response = session.get(url, params=parameters)
   data = json.loads(response.text)
   print(data)
+  print("Hello Github Action")
 except (ConnectionError, Timeout, TooManyRedirects) as e:
   print(e)
